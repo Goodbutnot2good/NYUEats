@@ -417,7 +417,7 @@ button:focus {
   min-height: 780px;
   display: flex;
   position: relative;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner/home-banner.jpg) no-repeat scroll center; }
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner/nyubanner.jpg) no-repeat scroll center; }
   .home_banner_area .banner_inner {
     position: relative;
     z-index: 10;
@@ -545,7 +545,7 @@ button:focus {
 
 .banner_area {
   position: relative;
-  background: url(../img/banner/banner.jpg) no-repeat center center;
+  background: url(../img/banner/nyubanner.jpg) no-repeat center center;
   z-index: 1;
   min-height: 392px;
   padding-top: 0 !important; }
@@ -1163,7 +1163,12 @@ button:focus {
 /*========= blog_categorie_area css ===========*/
 .blog_categorie_area {
   padding-top: 80px;
-  padding-bottom: 80px; }
+  padding-bottom: 0px; }
+
+.blog_categorie_next {
+  padding-top: 0px;
+  padding-bottom: 15px;
+}
 
 .categories_post {
   position: relative;
@@ -1203,6 +1208,9 @@ button:focus {
   .categories_post:hover .categories_details {
     background-color: transparent;
     opacity: .6; }
+
+
+
 
 /*============ blog_left_sidebar css ==============*/
 .blog_item {
@@ -3106,6 +3114,9 @@ h6 {
   .categories_post {
     max-width: 360px;
     margin: 0 auto; }
+
+  .blog_categorie_next .col-lg-4 {
+    margin-top: 30px; }
 
   .blog_categorie_area .col-lg-4 {
     margin-top: 30px; }

@@ -1,15 +1,43 @@
-import os, time
-from flask import Flask, render_template, session
-from flask_mysqldb import MySQL
+#Import Flask Library
+from flask import Flask, render_template, request, session, url_for, redirect, flash, os
+import pymysql.cursors
+import time
+import datetime
+import hashlib
 
+#Initialize the app from Flask
 app = Flask(__name__)
-app.config['MYSQL_HOST'] = '127.0.0.1'	#not localhost since db wants 127.0.0.1 not 0.0.0.0
-app.config['MYSQL_USER'] = 'ubuntu'
-app.config['MYSQL_PASSWORD'] = 'cafe'
-app.config['MYSQL_DB'] = 'cafeteria'
-mysql = MySQL(app)
-#mysql.connection.autocommit(True)
-cur = mysql.connection.cursor()
+
+#Configure MySQL
+conn = pymysql.connect(host='localhost',
+                       port = 8889,
+                       user='root',
+                       password='root',
+                       db='NYUeats',
+                       charset='utf8mb4',
+                       cursorclass=pymysql.cursors.DictCursor)
+
+#Method to run an sql query without commit.
+#Input: query, data to be used in query, and amount, which is either "one" or "all" determines fetchone() or fetchall(). 
+#Output: returns data from query
+def run_sql(query, data, amount):
+    cursor = conn.cursor()
+    cursor.execute(query, data)
+    data = None
+    if amount == "one":
+        data = cursor.fetchone()
+    elif amount == "all":
+        data = cursor.fetchall()
+    cursor.close()
+    return data
+#Method to run an sql query with commit. 
+#Input: query, data to be used in query.
+#output: none.
+def run_sql_commit(query, data):
+    cursor = conn.cursor()
+    cursor.execute(query, data)
+    conn.commit()
+    cursor.close()
 
 app.secret_key = os.urandom(24)
 
